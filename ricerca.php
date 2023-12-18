@@ -12,7 +12,7 @@
     
     <form class="row m-3 pt-4" action="alberghi.php">
         <div class="col-2">
-            <input type="number" name="vote" class="form-control" id="validationDefault01" min="0" max="5" value="0" required>
+            <input type="number" name="vote" class="form-control" id="validationDefault01" min="0" max="6" value="0" required>
         </div>
         <button class="btn btn-primary col-1" type="submit">Submit form</button>
     </form>

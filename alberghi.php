@@ -61,7 +61,7 @@
 <h2 class="pt-1 pb-2">Hotel trovati in base alla ricerca:</h2>
 
 <table class="table">
-        <thead>
+        <thead class="<?php echo ($votoCercato > 5 || $votoCercato < 0) ? 'd-none' : ''; ?>">
             <tr>
                 <th class="pt-4" scope="col">#</th>
                 <th scope="col">Titolo</th>
@@ -85,6 +85,15 @@
             <?php } ?>
             <?php } ?>
         </tbody>
+
+        <?php if ( $votoCercato > 5 || $votoCercato < 0 ) { ?>
+            <div class="text-center">
+                <h2 class="text-danger p-3"><?php echo "Nessun Risultato Trovato" ?></h2>
+                <form action="ricerca.php">
+                <button class="btn btn-primary" type="submit">Torna alla ricerca</button>
+            </form>
+            </div>
+        <?php } ?>
     </table>
 
 
@@ -94,7 +103,7 @@
 <p>
     <?php echo "Titolo: <b>" . $hotel['name'] . "</b>" . "<br>" ?>
     <?php echo "Descrizione: <b>" . $hotel['description'] . "</b>" . "<br>" ?>
-    <?php echo "Parcheggio: <b>" . $hotel['parking'] . "</b>" . "<br>" ?>
+    <?php echo "Parcheggio: <b>" . ($hotel['parking'] ? 'Sì' : 'No') . "</b>" . "<br>" ?>
     <?php echo "Vote: <b>" . $hotel['vote'] . "</b>" . "<br>" ?>
     <?php echo "Distanza dal centro: <b>" . $hotel['distance_to_center'] . " km" . "</b>" . "<br>" ?>
 </p>
