@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
-    <title>Document</title>
+    <title>alberghi</title>
 </head>
 
 <?php
@@ -49,21 +49,16 @@
 
     ];
 
+
+    $votoCercato = $_GET['vote'];
+    $counter = 1;
+
+
 ?>
 
 <body>
 
-<?php foreach ($hotels as $hotel) { ?>
-<p>
-    <?php echo "Titolo: <b>" . $hotel['name'] . "</b>" . "<br>" ?>
-    <?php echo "Descrizione: <b>" . $hotel['description'] . "</b>" . "<br>" ?>
-    <?php echo "Parcheggio: <b>" . $hotel['parking'] . "</b>" . "<br>" ?>
-    <?php echo "Vote: <b>" . $hotel['vote'] . "</b>" . "<br>" ?>
-    <?php echo "Distanza dal centro: <b>" . $hotel['distance_to_center'] . " km" . "</b>" . "<br>" ?>
-</p>
-<?php } ?>
-
-
+<h2 class="pt-1 pb-2">Hotel trovati in base alla ricerca:</h2>
 
 <table class="table">
         <thead>
@@ -77,9 +72,10 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($hotels as $index => $hotel) { ?>
+            <?php foreach ($hotels as $hotel) { ?>
+            <?php if ( $hotel['vote'] >= $votoCercato) { ?>
                 <tr>
-                    <th scope="row"><?php echo $index + 1; ?></th>
+                    <th scope="row"><?php echo $counter++; ?></th>
                     <td><?php echo $hotel['name']; ?></td>
                     <td><?php echo $hotel['description']; ?></td>
                     <td><?php echo $hotel['parking'] ? 'Sì' : 'No'; ?></td>
@@ -87,7 +83,21 @@
                     <td><?php echo $hotel['distance_to_center'] . " km"; ?></td>
                 </tr>
             <?php } ?>
+            <?php } ?>
         </tbody>
     </table>
+
+
+<h2 class="pt-5 pb-2">Milestone 0</h2>
+
+    <?php foreach ($hotels as $hotel) { ?>
+<p>
+    <?php echo "Titolo: <b>" . $hotel['name'] . "</b>" . "<br>" ?>
+    <?php echo "Descrizione: <b>" . $hotel['description'] . "</b>" . "<br>" ?>
+    <?php echo "Parcheggio: <b>" . $hotel['parking'] . "</b>" . "<br>" ?>
+    <?php echo "Vote: <b>" . $hotel['vote'] . "</b>" . "<br>" ?>
+    <?php echo "Distanza dal centro: <b>" . $hotel['distance_to_center'] . " km" . "</b>" . "<br>" ?>
+</p>
+<?php } ?>
 </body>
 </html>
