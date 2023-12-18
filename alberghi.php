@@ -52,9 +52,42 @@
 ?>
 
 <body>
-    <div></div>
-    <p class="text-danger"><?php foreach ($hotels as $hotel) {
-        echo "Titolo: " . $hotel['name'] . "<br>" . "Descrizione: " . $hotel['description'] . "<br>" . "Parking: " . $hotel['parking'] . "<br>" . "Vote: " . $hotel['vote'] . "<br>" . "Distanza dal centro: " . $hotel['distance_to_center'] . '<br><br><br>';;
-    }  ?></p>
+
+<?php foreach ($hotels as $hotel) { ?>
+<p>
+    <?php echo "Titolo: <b>" . $hotel['name'] . "</b>" . "<br>" ?>
+    <?php echo "Descrizione: <b>" . $hotel['description'] . "</b>" . "<br>" ?>
+    <?php echo "Parcheggio: <b>" . $hotel['parking'] . "</b>" . "<br>" ?>
+    <?php echo "Vote: <b>" . $hotel['vote'] . "</b>" . "<br>" ?>
+    <?php echo "Distanza dal centro: <b>" . $hotel['distance_to_center'] . " km" . "</b>" . "<br>" ?>
+</p>
+<?php } ?>
+
+
+
+<table class="table">
+        <thead>
+            <tr>
+                <th class="pt-4" scope="col">#</th>
+                <th scope="col">Titolo</th>
+                <th scope="col">Descrizione</th>
+                <th scope="col">Parcheggio</th>
+                <th scope="col">Vote</th>
+                <th scope="col">Distanza dal centro</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($hotels as $index => $hotel) { ?>
+                <tr>
+                    <th scope="row"><?php echo $index + 1; ?></th>
+                    <td><?php echo $hotel['name']; ?></td>
+                    <td><?php echo $hotel['description']; ?></td>
+                    <td><?php echo $hotel['parking'] ? 'Sì' : 'No'; ?></td>
+                    <td><?php echo $hotel['vote']; ?></td>
+                    <td><?php echo $hotel['distance_to_center'] . " km"; ?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
 </body>
 </html>
